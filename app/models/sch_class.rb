@@ -7,11 +7,12 @@ class SchClass < ActiveRecord::Base
 	validates :teacher, presence: true, length: { minimum: 3} 
 =end
 	validate :all_in_one_validate 
+	validate :check_for_same_grade_and_class, on: :create
 	def all_in_one_validate
 		if not grade.blank?
 			errors.add(:grade,"must be integer") unless grade.is_a?(Integer)
 			if grade < 1 || grade > 10
-				errors.add(:grade,"must in 1...10")
+				errors.add(:grade,"must in 1..10")
 			end
 		else
 			errors.add(:grade,"is blank")
@@ -32,6 +33,8 @@ class SchClass < ActiveRecord::Base
 				errors.add(:teacher,"must longer than 3") 
 			end
 		end
+	end
+	def check_for_same_grade_and_class
 		sch_cls=SchClass.find_by grade: grade, class_number: class_number
 		if not sch_cls.blank?
 			errors[:base] << 

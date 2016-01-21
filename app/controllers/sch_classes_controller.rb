@@ -20,6 +20,11 @@ class SchClassesController < ApplicationController
 			render 'index'
 		end
 	end
+	def update
+		@sch_class=SchClass.find(params[:id])
+		@sch_class.update(get_sch_class_params)
+		render 'show'
+	end
 	def destroy
 		begin
 			@sch_class=SchClass.find(params[:id])
