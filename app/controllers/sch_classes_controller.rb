@@ -11,6 +11,14 @@ class SchClassesController < ApplicationController
 		end
 		render 'index'
 	end
+	def destroy
+		begin
+			@sch_class=SchClass.find(params[:id])
+			@sch_class.destroy if @sch_class
+		rescue ActiveRecord::RecordNotFound
+		end
+		redirect_to sch_classes_path
+	end
 
 	private
 	def get_sch_class_params
