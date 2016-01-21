@@ -1,0 +1,11 @@
+
+<%= form_for @sch_class do |f| %>
+	<p>
+	<%= f.label '年级：' %>
+	<%= f.text_field :grade %>
+	<%= f.label '班级：' %>
+	<%= f.text_field :class_number %>
+	<%= f.label '班主任：' %>
+	<%= f.text_field :teacher %>
+	<%= f.submit %></p>
+<% end %>
