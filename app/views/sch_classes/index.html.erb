@@ -1,8 +1,15 @@
 
 <h1>班级管理</h1>
 
-<%= link_to '新建班级', new_sch_class_path %>
 
+<hr />
+<%= render 'error' %>
+<p>
+<h4>新建班级</h4>
+<%= render 'form' %>
+</p>
+
+<hr />
 <p>
 <table>
 	<tr>
@@ -13,8 +20,9 @@
 	</tr>
 	<% @sch_classes.each do |sch_class| %>
 		<tr>
-			<td><%= sch_class.title %></td>
-			<td><%= sch_class.text %></td>
+			<td><%= sch_class.grade %></td>
+			<td><%= sch_class.class_number %></td>
+			<td><%= sch_class.teacher %></td>
 			<td><%= link_to '详情', sch_class_path(sch_class) %></td>
 			<td><%= link_to '删除', sch_class_path(sch_class),
 				method: :delete,
