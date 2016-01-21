@@ -11,6 +11,15 @@ class SchClassesController < ApplicationController
 		end
 		render 'index'
 	end
+	def show
+		begin
+			@sch_class=SchClass.find(params[:id])
+		rescue ActiveRecord::RecordNotFound
+			index
+			@sch_class.errors[:base] << "class #{params[:id]} does not exists"
+			render 'index'
+		end
+	end
 	def destroy
 		begin
 			@sch_class=SchClass.find(params[:id])
