@@ -6,6 +6,8 @@ class SchClass < ActiveRecord::Base
 		numericality: {greater_than:0}
 	validates :teacher, presence: true, length: { minimum: 3} 
 =end
+	has_many :students
+
 	validate :all_in_one_validate 
 	validate :check_for_same_grade_and_class, on: :create
 	def all_in_one_validate

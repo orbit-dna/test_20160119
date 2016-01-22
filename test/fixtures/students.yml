@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sch_class_id: 
+  name: MyString
+  gender: false
+  birth: 2016-01-22
+
+two:
+  sch_class_id: 
+  name: MyString
+  gender: false
+  birth: 2016-01-22

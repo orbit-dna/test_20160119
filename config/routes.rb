@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
   # get 'welcome/index'
   resources :sch_classes
+  resources :students
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
