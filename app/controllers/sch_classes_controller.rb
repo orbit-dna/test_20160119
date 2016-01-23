@@ -14,6 +14,7 @@ class SchClassesController < ApplicationController
 	def show
 		begin
 			@sch_class=SchClass.find(params[:id])
+			@students=@sch_class.students
 		rescue ActiveRecord::RecordNotFound
 			index
 			@sch_class.errors[:base] << "class #{params[:id]} does not exists"
