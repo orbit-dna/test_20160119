@@ -28,6 +28,7 @@ class SchClassesController < ApplicationController
 	def destroy
 		begin
 			@sch_class=SchClass.find(params[:id])
+			@sch_class.students.delete
 			@sch_class.destroy if @sch_class
 		rescue ActiveRecord::RecordNotFound
 		end
