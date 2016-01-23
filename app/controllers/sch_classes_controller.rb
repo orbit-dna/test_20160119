@@ -24,6 +24,7 @@ class SchClassesController < ApplicationController
 	def update
 		@sch_class=SchClass.find(params[:id])
 		@sch_class.update(get_sch_class_params)
+		@students=@sch_class.students
 		render 'show'
 	end
 	def destroy
