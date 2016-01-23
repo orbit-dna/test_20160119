@@ -28,7 +28,7 @@
 				"#{sch_class.grade}年#{sch_class.class_number}班" %></td>
 			<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
 			<td><%= student.name %></td>
-			<td><%= student.gender.blank? ? "未知" : 
+			<td><%= student.gender==nil ? "未知" : 
 				student.gender ? "男" : "女" %></td>
 			<td><%= student.birth %></td>
 			<td><%= link_to '详情', student_path(student) %></td>
