@@ -54,7 +54,7 @@ class StudentsController < ApplicationController
 			@student.destroy
 		rescue ActiveRecord::RecordNotFound
 		end
-		redirect_to students_path
+		redirect_to request.referer
 	end
 
 	private 
