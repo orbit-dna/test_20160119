@@ -1,18 +1,11 @@
-
 <%= form_for @student do |f| %>
-	<p>
 	<% all_sch_classes={"未分配" => nil }
 		SchClass.all.each { |sch_class| 
 		all_sch_classes["#{sch_class.grade}年#{sch_class.class_number}班"]=sch_class.id
 		} %>
-	<%= f.label '班级：' %>
-	<%= select :sch_class, :id, all_sch_classes %>
-	&nbsp;&nbsp;&nbsp;&nbsp;
-	<%= f.label '姓名：' %>
-	<%= f.text_field :name %>
-	<%= f.label '性别：' %>
-	<%= f.select :gender, { "未填写" => nil, "男" => true, "女" => false } %>
-	<%= f.label '生日：' %>
-	<%= f.date_field :birth %>
-	<%= f.submit "创建学生信息" %></p>
+	班级：<%= select :sch_class, :id, all_sch_classes %><br />
+	姓名：<%= f.text_field :name %><br />
+	性别：<%= f.select :gender, { "未填写" => nil, "男" => true, "女" => false } %><br />
+	生日：<%= f.date_field :birth %><br />
+	<%= f.submit "创建学生信息" %>
 <% end %>

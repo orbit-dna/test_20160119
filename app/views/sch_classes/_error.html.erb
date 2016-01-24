@@ -1,8 +1,8 @@
 <% if @sch_class.errors.any? %>
 	<div id="error_explanation">
-		<h2>
+		<h3>
 			<%= @sch_class.errors.count %> 项错误产生
-		</h2>
+		</h3>
 		<ul>
 			<% @sch_class.errors.full_messages.each do |msg| %>
 				<li><%= msg %></li>

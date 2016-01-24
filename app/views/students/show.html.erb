@@ -1,31 +1,41 @@
-<h1>学生信息</h1>
-<hr />
-<%= link_to "所有学生", students_path %>
-<%
-sch_class_str="#{@sch_class.grade}年#{@sch_class.class_number}班" unless @sch_class.blank?
-%>
-<%= @sch_class.blank? ? "未分班" : 
-	( link_to sch_class_str, sch_class_path(@sch_class.id) ) %>
-<%= render 'error' %>
-<p>
+<div class="row-fluid">
+	<div class="col-xs-2 span2">
+		<h2>学生信息</h2>
+		<hr />
+				<%= link_to "所有学生", students_path %>
+				<br />
+		<%
+		sch_class_str="#{@sch_class.grade}年#{@sch_class.class_number}班" unless @sch_class.blank?
+		%>
+		<%= @sch_class.blank? ? "未分班" : 
+			( link_to sch_class_str, sch_class_path(@sch_class.id) ) %>
+	</div>
+	<div class="col-xs-10 span10">
+		<div class="row-fluid">
+			<div class="span12">
+				<%= render 'error' %>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span12">
 <%= form_for @student do |f| %>
-	<p>
 	<% all_sch_classes={"未分配" => nil }
 		SchClass.all.each { |sch_class| 
 		all_sch_classes["#{sch_class.grade}年#{sch_class.class_number}班"]=sch_class.id
 		} %>
-	<%= f.label "ID: #{@student.id}" %>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<%= f.label "ID: #{@student.id}" %><br />
 	<%= f.label '班级：' %>
-	<%= select :sch_class, :id, all_sch_classes %>
-	&nbsp;&nbsp;&nbsp;&nbsp;
+	<%= select :sch_class, :id, all_sch_classes %><br />
 	<%= f.label '姓名：' %>
-	<%= f.text_field :name %>
+	<%= f.text_field :name %><br />
 	<%= f.label '性别：' %>
-	<%= f.select :gender, { "未填写" => nil, "男" => true, "女" => false } %>
+	<%= f.select :gender, { "未填写" => nil, "男" => true, "女" => false } %><br />
 	<%= f.label '生日：' %>
-	<%= f.date_field :birth %>
+	<%= f.date_field :birth %><br />
 	<%= f.submit "提交更改" %>
-	<%= link_to "还原", student_path %></p>
+	<%= link_to "还原", student_path %>
 <% end %>
-</p>
+			</div>
+		</div>
+	</div>
+</div>

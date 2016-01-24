@@ -1,14 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Test20160119Rubyonrails</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Test20160119Rubyonrails</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
+<div class="container-fluid" id="MD" >
+	<div class="row-fluid">
+		<div class="span12">
+			<div class="page-header">
+				<h1>
+					班级学生管理系统
+				</h1>
+			</div>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span12">
+			<nav class="navbar navbar-inverse">
+				<ul class="nav nav-pills">
+					<li class="active">
+						<%= link_to "首页", root_path %>
+					</li>
+					<li>
+						<%= link_to "班级管理", sch_classes_path %>
+					</li>
+					<li>
+						<%= link_to "学生管理", students_path %>
+					</li>
+				<ul class="nav nav-pills pull-right">
+					<li class="disabled">
+						<%= link_to "用户管理", root_path %>
+					</li>
+					<li class="divider-vertical"></li>
+					<li class="disabled dropdown">
+						 <a href="#" data-toggle="dropdown" class="dropdown-toggle">用户<strong class="caret"></strong></a>
+						<ul class="dropdown-menu">
+							<li>
+								<%= link_to "更改密码", root_path %>
+							</li>
+							<li class="divider">
+							</li>
+							<li>
+								<%= link_to "登出", root_path %>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span12">
+			<div class="jumbotron">
+				<%= yield %>
+			</div>
+		</div>
+	</div>
+</div>
 
 </body>
 </html>
