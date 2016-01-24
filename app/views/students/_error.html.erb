@@ -1,8 +1,8 @@
 <% if @student.errors.any? %>
 	<div id="error_explanation">
-		<h2>
+		<h3>
 			<%= @student.errors.count %> 项错误产生
-		</h2>
+		</h3>
 		<ul>
 			<% @student.errors.full_messages.each do |msg| %>
 				<li><%= msg %></li>
