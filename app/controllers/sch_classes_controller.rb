@@ -3,7 +3,7 @@ class SchClassesController < ApplicationController
 		@sch_class=SchClass.new
 		@sch_classes,@page_range=
 			paginatie (SchClass.all.sort_by {|x| [x.grade,x.class_number]}),
-		   	params[:page].to_i, @@items_per_page
+				params[:page].to_i, @@items_per_page
 	end
 	def create
 		index
@@ -16,7 +16,9 @@ class SchClassesController < ApplicationController
 	def show
 		begin
 			@sch_class=SchClass.find(params[:id])
-			@students=@sch_class.students
+			@students,@page_range=
+				paginatie (@sch_class.students.sort_by {|x| x.id}),
+					params[:page].to_i, @@items_per_page
 		rescue ActiveRecord::RecordNotFound
 			index
 			@sch_class.errors[:base] << "class #{params[:id]} does not exists"
@@ -46,6 +48,7 @@ class SchClassesController < ApplicationController
 	end
 	def paginatie(datas,page_id,items_per_page)
 		page_max=(datas.count-1)/items_per_page
+		page_max=0 if page_max < 0
 		page_id-=1
 		page_id=0 if page_id < 0
 		page_id=page_max if page_id > page_max
