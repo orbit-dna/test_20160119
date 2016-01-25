@@ -29,9 +29,23 @@
 			<% end %>
 		</table>
 		<ul class="pagination">
-			<li><%= link_to "上一页", "#" %></li>
-			<li><%= link_to "1", "#" %></li>
-			<li><%= link_to "下一页", "#" %></li>
+			<% props_prev=@page_range[:prev].blank? ? {class: "disabled"} : {}
+			   props_next=@page_range[:next].blank? ? {class: "disabled"} : {}
+			%>
+			<li>
+			<%= link_to "上一页", sch_classes_path+"/?page=#{@page_range[:prev]}"%>
+			</li>
+			<% (@page_range[:start]..@page_range[:end]).each do |num| 
+				props= num==@page_range[:current] ? {class: "active"} : {}
+			%>
+			<% if props.count > 0 %>
+				<li class="active">
+			<% else %>
+				<li>
+			<% end %>
+			<%= link_to num, sch_classes_path+"/?page=#{num}", props%></li>
+			<% end %>
+			<li><%= link_to "下一页", sch_classes_path+"/?page=#{@page_range[:next]}"%></li>
 		</ul>
 		</div>
 	</div>
