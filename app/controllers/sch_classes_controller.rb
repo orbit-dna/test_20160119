@@ -55,7 +55,7 @@ class SchClassesController < ApplicationController
 		range_end=range_current+2
 		range_end=page_max+1 if range_end > page_max+1
 		range_prev=page_id==0 ? nil : range_current-1
-		range_next=page_id==page_max+1 ? nil : range_current+1
+		range_next=page_id==page_max ? nil : range_current+1
 		return datas[page_id*items_per_page,items_per_page],
 			{current: range_current, start: range_start, end: range_end,
 				prev: range_prev, next: range_next}
