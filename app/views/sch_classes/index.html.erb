@@ -32,7 +32,11 @@
 			<% props_prev=@page_range[:prev].blank? ? {class: "disabled"} : {}
 			   props_next=@page_range[:next].blank? ? {class: "disabled"} : {}
 			%>
-			<li>
+			<% if props_prev.count == 0 %>
+				<li>
+			<% else %>
+				<li class="disabled">
+			<% end %>
 			<%= link_to "上一页", sch_classes_path+"/?page=#{@page_range[:prev]}"%>
 			</li>
 			<% (@page_range[:start]..@page_range[:end]).each do |num| 
@@ -45,7 +49,12 @@
 			<% end %>
 			<%= link_to num, sch_classes_path+"/?page=#{num}", props%></li>
 			<% end %>
-			<li><%= link_to "下一页", sch_classes_path+"/?page=#{@page_range[:next]}"%></li>
+			<% if props_next.count == 0 %>
+				<li>
+			<% else %>
+				<li class="disabled">
+			<% end %>
+			<%= link_to "下一页", sch_classes_path+"/?page=#{@page_range[:next]}"%></li>
 		</ul>
 		</div>
 	</div>
