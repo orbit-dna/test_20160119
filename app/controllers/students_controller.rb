@@ -3,7 +3,7 @@ class StudentsController < ApplicationController
 		@student=Student.new
 		@students,@page_range=
 			paginatie (Student.all.sort_by {|x| x.id}), 
-		   	params[:page].to_i, @@items_per_page
+		   	params[:page].to_i, @@items_per_page, students_path
 	end
 	def create
 		index
@@ -64,7 +64,7 @@ class StudentsController < ApplicationController
 	def get_student_params
 		params.require(:student).permit(:name, :gender, :birth)
 	end
-	def paginatie(datas,page_id,items_per_page)
+	def paginatie(datas,page_id,items_per_page,base_path)
 		page_max=(datas.count-1)/items_per_page
 		page_max=0 if page_max < 0
 		page_id-=1
@@ -79,6 +79,6 @@ class StudentsController < ApplicationController
 		range_next=page_id==page_max ? nil : range_current+1
 		return datas[page_id*items_per_page,items_per_page],
 			{current: range_current, start: range_start, end: range_end,
-				prev: range_prev, next: range_next}
+ 				prev: range_prev, next: range_next, base_path: base_path}
 	end
 end
