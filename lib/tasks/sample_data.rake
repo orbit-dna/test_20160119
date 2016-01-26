@@ -15,12 +15,12 @@ namespace :db do
 			"郑家豪",
 		].each
 		students=[
-			"小明",
-			"小红",
-			"小华",
-			"小刚",
-			"小雪",
-			"小某",
+			"张小明",
+			"刘小红",
+			"孙小华",
+			"李小刚",
+			"王小雪",
+			"赵小某",
 			"Tom",
 			"Mary",
 			"Someone",
@@ -28,8 +28,8 @@ namespace :db do
 			"Emilie",
 			"Whichone",
 			"まこと",
-			"ゆい",
-			"だれ",
+			"ゆいちゃん",
+			"だれか",
 			"Pepe",
 			"Yoyo",
 			"Haha",
@@ -57,19 +57,19 @@ namespace :db do
 		16.times do
 			student=Student.create name: students.next, 
 				gender: genders.next, 
-				birth: Time.new(base_time+rand(random_scale))
+				birth: Time.at(base_time+rand(random_scale))
 			sch_class.students.append student
 		end
 		3.times do
 			Student.create! name: students.next, 
 				gender: genders.next, 
-				birth: Time.new(base_time+rand(random_scale))
+				birth: Time.at(base_time+rand(random_scale))
 		end
 		sch_class=SchClass.find_by grade: 1, class_number: 2
 		3.times do
 			student=Student.create name: students.next, 
 				gender: genders.next, 
-				birth: Time.new(base_time+rand(random_scale))
+				birth: Time.at(base_time+rand(random_scale))
 			sch_class.students.append student
 		end
 	end
