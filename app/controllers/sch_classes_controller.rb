@@ -6,11 +6,13 @@ class SchClassesController < ApplicationController
 				params[:page].to_i, @@items_per_page, sch_classes_path
 	end
 	def create
-		index
 		@sch_class=SchClass.new(get_sch_class_params)
 		if @sch_class.save
 			@sch_class=SchClass.new
 		end
+		@sch_classes,@page_range=
+			paginatie (SchClass.all.sort_by {|x| [x.grade,x.class_number]}),
+				params[:page].to_i, @@items_per_page, sch_classes_path
 		render 'index'
 	end
 	def show

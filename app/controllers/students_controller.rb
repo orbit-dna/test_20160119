@@ -6,7 +6,6 @@ class StudentsController < ApplicationController
 		   	params[:page].to_i, @@items_per_page, students_path
 	end
 	def create
-		index
 		@student=Student.new(get_student_params)
 		sch_class=nil
 		id=params.require(:sch_class)[:id]
@@ -19,6 +18,9 @@ class StudentsController < ApplicationController
 			sch_class.students.append(@student) unless sch_class.blank?
 			@student=Student.new
 		end
+		@students,@page_range=
+			paginatie (Student.all.sort_by {|x| x.id}), 
+		   	params[:page].to_i, @@items_per_page, students_path
 		# sch_class=nil
 		render 'index'
 	end 
