@@ -1,6 +1,11 @@
 # test_20160119
 A simple students manage system powered by ROR
 
+usage:
+	bin/setup
+	rake db:fill_sample
+	rails server
+
 基于rails的学校学生管理程序:
 	功能：
 		班级管理（增删改查，分页）
