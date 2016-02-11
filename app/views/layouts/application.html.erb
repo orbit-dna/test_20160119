@@ -24,17 +24,17 @@
 		<div class="span12">
 			<nav class="navbar navbar-inverse">
 				<ul class="nav nav-pills">
-					<li class="active">
+					<li id="navigation_root">
 						<%= link_to "首页", root_path %>
 					</li>
-					<li>
+					<li id="navigation_sch_classes">
 						<%= link_to "班级管理", sch_classes_path %>
 					</li>
-					<li>
+					<li id="navigation_students">
 						<%= link_to "学生管理", students_path %>
 					</li>
 				<ul class="nav nav-pills pull-right">
-					<li class="disabled">
+					<li id="navigation_users" class="disabled">
 						<%= link_to "用户管理", root_path %>
 					</li>
 					<li class="divider-vertical"></li>
@@ -53,6 +53,23 @@
 					</li>
 				</ul>
 			</nav>
+			<script>
+			<%
+				navigation_id=case url_for
+					when /#{root_path}$/
+						"navigation_root"
+					when /#{sch_classes_path}/
+						"navigation_sch_classes"
+					when /#{students_path}/
+						"navigation_students"
+					when /#{users_path}/
+						"navigation_users"
+					else
+						"navigation_root"
+					end
+			%>
+		document.getElementById("<%= navigation_id %>").className += "active"
+			</script>
 		</div>
 	</div>
 	<div class="row-fluid">
