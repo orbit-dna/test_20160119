@@ -1,3 +1,4 @@
+<%= paginate @students,params[:page].to_i,"?page=%d" do |students| %>
 <table class="table">
 	<tr>
 		<th>班级</th>
@@ -7,7 +8,7 @@
 		<th>生日</th>
 		<th colspan="3"></th>
 	</tr>
-	<% @students.each do |student| %>
+	<% students.each do |student| %>
 		<tr>
 			<% sch_class=student.sch_class %>
 			<td><%= sch_class.blank? ? "未分班" : 
@@ -24,31 +25,4 @@
 		</tr>
 	<% end %>
 </table>
-<ul class="pagination">
-	<% props_prev=@page_range[:prev].blank? ? {class: "disabled"} : {}
-	   props_next=@page_range[:next].blank? ? {class: "disabled"} : {}
-	%>
-	<% if props_prev.count == 0 %>
-		<li>
-	<% else %>
-		<li class="disabled">
-	<% end %>
-	<%= link_to "上一页", @page_range[:base_path]+"/?page=#{@page_range[:prev]}"%>
-	</li>
-	<% (@page_range[:start]..@page_range[:end]).each do |num| 
-		props= num==@page_range[:current] ? {class: "active"} : {}
-	%>
-	<% if props.count > 0 %>
-		<li class="active">
-	<% else %>
-		<li>
-	<% end %>
-	<%= link_to num, @page_range[:base_path]+"/?page=#{num}", props%></li>
-	<% end %>
-	<% if props_next.count == 0 %>
-		<li>
-	<% else %>
-		<li class="disabled">
-	<% end %>
-	<%= link_to "下一页", @page_range[:base_path]+"/?page=#{@page_range[:next]}"%></li>
-</ul>
+<% end %>
