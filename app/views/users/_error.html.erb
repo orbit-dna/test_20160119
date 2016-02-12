@@ -1,0 +1,12 @@
+<% if @user.errors.any? %>
+	<div id="error_explanation">
+		<h3>
+			<%= @user.errors.count %> 项错误产生
+		</h3>
+		<ul>
+			<% @user.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>

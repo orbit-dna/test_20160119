@@ -1,0 +1,9 @@
+
+<%= form_for @user do |f| %>
+	<%= f.label "login：" %><%= f.text_field :login %><br />
+	<%= f.label "name：" %><%= f.text_field :name %><br />
+	<%= f.label "privilege：" %><%= f.select :privilege, User::User_Privilege.invert %><br />
+	<%= f.label "status：" %><%= f.select :status, User::User_Status.invert %><br />
+	<%= f.label "verify code：" %><%= f.text_field :passwd %><br />
+	<%= f.submit "创建User信息" %>
+<% end %>
