@@ -1,0 +1,26 @@
+<% tmp_id="a_temp_id_for_pagination" %>
+<ul id="<%= tmp_id %>" class="pagination">
+	<li><%= link_to "上一页", pagination[:path_format]%(pagination[:prev]||0) %></li>
+	<% (pagination[:start]..pagination[:end]).each do |num| %>
+	<li><%= link_to num, pagination[:path_format]%num %></li>
+	<% end %>
+	<li><%= link_to "下一页", pagination[:path_format]%(pagination[:next]||0) %></li>
+</ul>
+<script>
+	pagination=document.getElementById("<%= tmp_id %>")
+	<% if pagination[:prev] == nil %>
+	   pagination.firstElementChild.className += " disabled";
+	   pagination.firstElementChild.children[0].removeAttribute("href");
+	   <% end %>
+	<% if pagination[:next] == nil %>
+	   pagination.lastElementChild.className += " disabled";
+	   pagination.lastElementChild.children[0].removeAttribute("href");
+	   <% end %>
+   <% page_idx_in_range=pagination[:current]-pagination[:start]+1
+	   if pagination[:blank] == true %>
+	   pagination.children[<%= page_idx_in_range %>].className += " disabled";
+	  <% elsif %>
+	   pagination.children[<%= page_idx_in_range %>].className += " active";
+	  <% end %>
+	   pagination.children[<%= page_idx_in_range %>].children[0].removeAttribute("href");
+</script>
